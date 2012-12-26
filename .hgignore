@@ -1,0 +1,11 @@
+syntax: glob
+
+# Python files
+*.pyc
+
+*~
+*/Thumbs.db
+
+# SublimeText2 project file
+*.sublime-project
+*.sublime-workspace
