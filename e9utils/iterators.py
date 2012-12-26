@@ -3,6 +3,8 @@
 Useful functions for handling iterables
 
 """
+__license__ = "MIT"
+
 from itertools import tee, chain, izip, izip_longest
 # INFO: izip_longest is new in Python 2.6
 
