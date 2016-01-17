@@ -5,19 +5,17 @@ Useful functions for handling iterables
 """
 __license__ = "MIT"
 
-from itertools import tee, chain, izip, izip_longest
-# INFO: izip_longest is new in Python 2.6
-
+from itertools import tee, chain, zip_longest
 
 def sliding_tuples(iterable, length, fill_value=None, fill_lead=True, fill_tail=True):
 	"""Generate an iterable of tuples of consecutive items from the iterable.
 	
 	Simple usage:
-	>>> list(sliding_tuples(xrange(4), 3))
+	>>> list(sliding_tuples(range(4), 3))
 	[(None, None, 0), (None, 0, 1), (0, 1, 2), (1, 2, 3), (2, 3, None), (3, None, None)]
 	
 	Avoiding tuples partially outside of the iterable:
-	>>> list(sliding_tuples(xrange(4), 3, fill_lead=False, fill_tail=False))
+	>>> list(sliding_tuples(range(4), 3, fill_lead=False, fill_tail=False))
 	[(0, 1, 2), (1, 2, 3)]
 	
 	:param iterable: an iterable
@@ -39,20 +37,20 @@ def sliding_tuples(iterable, length, fill_value=None, fill_lead=True, fill_tail=
 	# make a list of n iterables
 	# and initialize each iterable by shifting it according to his index
 	iterables = tee(iterable, length)
-	for i in xrange(1,length):
-		for j in xrange(i):
+	for i in range(1,length):
+		for j in range(i):
 			try:
-				iterables[i].next()
+				next(iterables[i])
 			except StopIteration as e:
 				# leave iterable closed if shorter than 'length'
-				# (izip_longuest will take care of it)
+				# (zip_longuest will take care of it)
 				pass
 	
 	# fill tail if needed
 	if fill_tail:
-		zipped = izip_longest(*iterables, fillvalue=fill_value)
+		zipped = zip_longest(*iterables, fillvalue=fill_value)
 	else:
-		zipped = izip(*iterables)
+		zipped = zip(*iterables)
 	
 	# yield the tuples
 	for tu in zipped:

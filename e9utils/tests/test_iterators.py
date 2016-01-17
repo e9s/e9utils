@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import unittest, doctest
 
-from ..iterators import sliding_tuples
+from e9utils.iterators import sliding_tuples
 
 
 class TestIterators(unittest.TestCase):
@@ -59,7 +59,7 @@ class TestIterators(unittest.TestCase):
 			),
 			# test with an iterator
 			(
-				(xrange(4), 2),
+				(range(4), 2),
 				[(None,0),(0,1),(1,2),(2,3),(3,None)]
 			),
 		]

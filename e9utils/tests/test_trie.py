@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import unittest
 
-from ..trie import Trie
+from e9utils.trie import Trie
 
 class TestTrie(unittest.TestCase):	
 	
